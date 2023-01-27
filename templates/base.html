@@ -2,6 +2,9 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        {% if page.description %}
+            <meta name="description" content="{{ page.description | safe }}" />
+        {% endif %}
         <title>
             {% block title %}
               {{ config.title }}
