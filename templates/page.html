@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{%- import 'macros/breadcrumbs.html' as breadcrumbs -%}
 {% block title %}
   {{ page.title }}
 {% endblock title %}
@@ -6,6 +7,7 @@
 <h1>
   {{ page.title }}
 </h1>
+{{ breadcrumbs::breadcrumbs() }}
 <p>{{ page.date }}</p>
 {{ page.content | safe }}
 {% endblock content %}
