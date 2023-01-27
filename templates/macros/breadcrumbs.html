@@ -1,20 +1,14 @@
 {% macro breadcrumbs() %}
   {% set current = section | default(value=page) %}
+  <a href="/">Home</a>
   {% for ancestor in current.ancestors %}
-    {% if loop.last %}
-      {% set current_section = get_section(path = ancestor) %}
+    {% if loop.first %}
+      {% continue %}
     {% endif %}
-  {% endfor %}
-    <a href="/">Home</a>
-    {% for ancestor in current.ancestors %}
-      {% if loop.first %}
-        {% continue %}
-      {% endif %}
-      <span>/</span>
-      {% set section = get_section(path=ancestor) %}
-      <a href="{{ section.permalink }}">{{ section.title }}</a>
-    {% endfor %}
     <span>/</span>
-    <a href="{{ current.permalink }}">{{ current.title }}</a>
-  </app-breadcrumbs>
+    {% set section = get_section(path=ancestor) %}
+    <a href="{{ section.permalink }}">{{ section.title }}</a>
+  {% endfor %}
+  <span>/</span>
+  <a href="{{ current.permalink }}">{{ current.title }}</a>
 {% endmacro %}
