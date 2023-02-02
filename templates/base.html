@@ -5,6 +5,11 @@
         {% if page.description %}
             <meta name="description" content="{{ page.description | safe }}" />
         {% endif %}
+        {% if page.extra.canonical %}
+            <link rel="canonical" href="{{ get_url(path=page.extra.canonical) }}" />
+        {% else %}
+            <link rel="canonical" href="{{ current_url }}" />
+        {% endif %}
         <title>
             {% block title %}
               {{ config.title }}
